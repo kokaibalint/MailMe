@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Imap;
+using MailMe.Models;
 using MimeKit;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace MailMe.Services.IServices
     {
         void Connect(ImapClient client);
 
-        bool Login(string email, string password, ImapClient client);
+        bool Login(User user, ImapClient client);
 
     }
 }

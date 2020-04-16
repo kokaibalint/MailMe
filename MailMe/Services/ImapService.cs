@@ -1,4 +1,6 @@
 ﻿using MailKit.Net.Imap;
+using MailKit.Search;
+using MailMe.Models;
 using MailMe.Services.IServices;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ namespace MailMe
     class ImapService : IImapService
     {
         private bool logged = false;
+        User user;
         public void Connect(ImapClient client)
         {
             try
@@ -23,11 +26,11 @@ namespace MailMe
             }
         }
 
-        public bool Login(string email, string password, ImapClient client)
+        public bool Login(User user, ImapClient client)
         {
             try
             {
-                client.Authenticate(email, password);
+                client.Authenticate(user.email, user.password);
                 if (client.IsAuthenticated)
                 {
                     logged = true;
@@ -39,5 +42,6 @@ namespace MailMe
             }
             return logged;
         }
+
     }
 }

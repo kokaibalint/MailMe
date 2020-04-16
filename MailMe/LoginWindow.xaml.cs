@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Imap;
+using MailMe.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,36 +22,30 @@ namespace MailMe
     {
         ImapClient client = new ImapClient();
         ImapService service = new ImapService();
+        User user;
+
 
         public LoginWindow()
         {
             InitializeComponent();
         }
 
-        public String GetEmail(TextBox text)
-        {
-            string email = text.Text;
-            return email;
-        }
-        public String GetPassword(TextBox text)
-        {
-            string password = text.Text;
-            return password;
-        }
-
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-
             if (client.IsConnected)
             {
                 client.Disconnect(true);
             }
 
             service.Connect(client);
-            if(service.Login(GetEmail(EmailBox), GetPassword(PasswordBox), client))
+            user = new User(EmailBox.Text, PasswordBox.Text);
+
+            if (service.Login(user, client))
             {
-                MailMeHome mailMeHome = new MailMeHome();
-                this.Content = mailMeHome;
+                MailMeHome mailMeHome = new MailMeHome(user);
+                mailMeHome.Show();
+                this.Close();
+
             }
         }
     }

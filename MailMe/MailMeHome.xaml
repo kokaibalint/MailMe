@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailMe"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MailMe" Height="720" Width="1280">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Orientation="Vertical">
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Elsődleges</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >Közösségi</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Promóciók</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Elküldött</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Spam</Button>
+        </StackPanel>
+        <ListBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" ItemsSource="{Binding}" x:Name="EmailListBox" >
+        </ListBox>
     </Grid>
 </Window>
