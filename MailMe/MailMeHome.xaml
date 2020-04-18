@@ -23,13 +23,22 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="10"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Orientation="Vertical">
-            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Elsődleges</Button>
-            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >Közösségi</Button>
-            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Promóciók</Button>
-            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Elküldött</Button>
-            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Spam</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="PrimaryButton_Click">Elsődleges</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="SocialButton_Click" >Közösségi</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="PromotionsButton_Click">Promóciók</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="SentButton_Click">Elküldött</Button>
+            <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="SpamButton_Click">Spam</Button>
         </StackPanel>
-        <ListBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" ItemsSource="{Binding}" x:Name="EmailListBox" >
-        </ListBox>
+        <!--<ListBox Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" x:Name="EmailListBox" >
+        </ListBox>-->
+        <ListView x:Name="EmailListView" Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" MouseDoubleClick="EmailListView_MouseDoubleClick">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="Width" Value="Auto" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Window>
